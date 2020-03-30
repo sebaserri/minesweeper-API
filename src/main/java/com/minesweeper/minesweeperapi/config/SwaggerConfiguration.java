@@ -27,6 +27,7 @@ public class SwaggerConfiguration {
     private ApiInfo apiEndPointsInfo() {
         return new ApiInfoBuilder().title("Minesweeper API")
             .description("Minesweeper API")
+            .contact(new Contact("Sebastian", "https://github.com/sebaserri/minesweeper-API", ""))
             .build();
     }
 }
