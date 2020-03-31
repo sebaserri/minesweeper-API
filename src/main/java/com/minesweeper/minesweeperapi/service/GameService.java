@@ -1,7 +1,6 @@
 package com.minesweeper.minesweeperapi.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.minesweeper.minesweeperapi.controller.request.CreateRequest;
 import com.minesweeper.minesweeperapi.controller.request.EventRequest;

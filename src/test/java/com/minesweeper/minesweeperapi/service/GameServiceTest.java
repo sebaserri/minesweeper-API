@@ -10,6 +10,7 @@ import java.util.Optional;
 import static org.junit.Assert.*;
 
 import com.minesweeper.minesweeperapi.controller.request.CreateRequest;
+import com.minesweeper.minesweeperapi.controller.request.EventRequest;
 import com.minesweeper.minesweeperapi.model.Game;
 import com.minesweeper.minesweeperapi.repository.GameRepository;
 
@@ -54,8 +55,8 @@ public class GameServiceTest {
             .updated(LocalDateTime.now())
             .status("NEW")
             .username("Sebastian")
-            .rows(3)
-            .columns(4)
+            .rows(8)
+            .columns(5)
             .mines(10)
             .build();    
     }
@@ -145,5 +146,38 @@ public class GameServiceTest {
         Game gameSaved = this.gameService.pause(theID);
         assertNotNull(gameSaved);
         assertEquals(gameDB.getStatus(), gameSaved.getStatus());
+    }
+
+    @Test
+    public void discover_ok() {
+        final String theID = "qwerty-234";
+        this.gameService = new GameService(gameRepository);
+
+        this.gameFound.start();
+
+        Optional<Game> optionalGame = Optional.of(this.gameFound);
+        Mockito.when(gameRepository.findById(theID)).thenReturn(optionalGame);
+
+        Game gameDB = Game.builder()
+            .id("qwerty-234")
+            .updated(LocalDateTime.now())
+            .status("RESUME")
+            .username("Sebastian")
+            .moves(10)
+            .rows(3)
+            .columns(4)
+            .mines(10)
+            .build();
+
+        Mockito.when(this.gameRepository.save(any(Game.class))).thenReturn(gameDB);
+
+        final EventRequest request = new EventRequest();
+        request.setGameId(theID);
+        request.setPosX(2);
+        request.setPosY (3);
+        
+        Game gameDiscover = this.gameService.discoverCell(request);
+        assertNotNull(gameDiscover);
+        assertEquals(gameDB.getId(), gameDiscover.getId());
     }
 }
