@@ -50,14 +50,14 @@ public class Game {
         Collections.shuffle(this.getCells());
 
         // THE MINES!!! :O
-        this.getCells().stream().limit(this.getMines()).forEach(Cell::mine);
+        this.getCells().stream().limit(this.getMines()).forEach(cellMine -> cellMine.setMine(true));
 
         // Sets value for each cell (how many mines has near)
        final Stream<Cell> aStreamOfCells = this.getCells().stream().filter((cell) -> !cell.isMine());
        aStreamOfCells.forEach((cell) -> cell.setValue(this.setTheValue(cell)));
     }
 
-    public void discoverCell(final int posX, final int posY) {
+    public void recognize(final int posX, final int posY) {
         final Cell theCell = this.findMeTheCellIn(posX, posY);
 
         if (theCell.isFlagged()) {
@@ -72,7 +72,7 @@ public class Game {
             return;
         }
 
-        theCell.discoverMe(this.getCells());
+        theCell.recognizeMe(this.getCells());
 
         // NO more cell available! YOU WON!!!!
         if (this.areCellUntouched()) {
@@ -115,6 +115,6 @@ public class Game {
     }
 
     private boolean areCellUntouched() {
-        return this.getCells().stream().filter(cell -> !cell.isMine()).allMatch(Cell::isDiscovered);
+        return this.getCells().stream().filter(cell -> !cell.isMine()).allMatch(Cell::isRecognized);
     }
 }

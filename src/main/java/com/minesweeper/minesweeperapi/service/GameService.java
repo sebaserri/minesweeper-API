@@ -51,7 +51,7 @@ public class GameService {
         return this.gameRepository.save(game);
     }
 
-    public Game discoverCell(final EventRequest request) {
+    public Game recognize(final EventRequest request) {
         Game game = findGameById(request.getGameId());
         if (game.isPaused()) {
             throw new RuntimeException("The Game is paused, can not update it.");
@@ -59,7 +59,7 @@ public class GameService {
         if (game.isGameOver()) {
             throw new RuntimeException("The Game finished, can not update it.");
         }
-        game.discoverCell(request.getPosX(), request.getPosY());
+        game.recognize(request.getPosX(), request.getPosY());
         return this.gameRepository.save(game);
     }
 

@@ -176,8 +176,8 @@ public class GameServiceTest {
         request.setPosX(2);
         request.setPosY (3);
         
-        Game gameDiscover = this.gameService.discoverCell(request);
-        assertNotNull(gameDiscover);
-        assertEquals(gameDB.getId(), gameDiscover.getId());
+        Game theGame = this.gameService.recognize(request);
+        assertNotNull(theGame);
+        assertEquals(gameDB.getId(), theGame.getId());
     }
 }
