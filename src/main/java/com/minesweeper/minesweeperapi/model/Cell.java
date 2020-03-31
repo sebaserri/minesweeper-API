@@ -16,7 +16,6 @@ public class Cell {
     private boolean mine;
     private boolean flagged;
     private long value;
-    private int index;
 
     public Cell(final int posX, final int posY) {
         this.posX = posX;
@@ -24,7 +23,11 @@ public class Cell {
     }
 
     public void discovered() {
-        this.discovered = true;
+        this.setDiscovered(true);
+    }
+
+    public void mine() {
+        this.setMine(true);
     }
 
     public boolean isAdjacent(final Cell other) {
