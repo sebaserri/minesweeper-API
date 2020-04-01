@@ -36,10 +36,11 @@ public class Game {
     private int rows;
     private int columns;
     private int mines;
-    private final List<Cell> cells = new ArrayList<>();
+    private List<Cell> cells;
     
     
     public void start() {
+        this.cells = new ArrayList<>();
         for (int i = 0; i < this.getRows(); i++) {
             for (int j = 0; j < this.getColumns(); j++) {
                 this.getCells().add(new Cell(i, j));
