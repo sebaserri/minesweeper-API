@@ -2,12 +2,15 @@
 
 # Notes
 
-Spring Boot Application using Java 11 and MongoDB. I used Swagger to have a documentation for
-the endpoints.
+Spring Boot Application using Java 11 and MongoDB. I used Swagger for API documentation.
 
-http://localhost:8080/swagger-ui.html
+Run and visit: http://localhost:8080/swagger-ui.html
+ or 
 
-(Soon will be deployed on cloud)
+Deployed on Heroku: https://deviget-minesweeper-sebaserri.herokuapp.com/swagger-ui.html 
+
+
+---
 
 API test
 
