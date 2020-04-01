@@ -1,4 +1,14 @@
 # minesweeper-API
+
+# Notes
+
+Spring Boot Application using Java 11 and MongoDB. I used Swagger to have a documentation for
+the endpoints.
+
+http://localhost:8080/swagger-ui.html
+
+(Soon will be deployed on cloud)
+
 API test
 
 We ask that you complete the following challenge to evaluate your development skills. Please use the programming language and framework discussed during your interview to accomplish the following task.
